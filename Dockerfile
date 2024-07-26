@@ -1,5 +1,7 @@
 #FROM openjdk:21-jdk-alpine
-FROM openjdk:21
+FROM eclipse-temurin:21-jdk-alpine
+
+RUN apk add --no-cache mysql
 
 WORKDIR /kafka-demo
 
