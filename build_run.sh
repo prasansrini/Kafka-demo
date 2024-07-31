@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mvn clean install -f ./build/Kafka-demo-aoo/pom.xml || exit
+mvn clean install -f /build/Kafka-demo-aoo/pom.xml || exit
 docker build -t kafka-docker-demo . || exit
 
 if [ $# -eq 0 ]
