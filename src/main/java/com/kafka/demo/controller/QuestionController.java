@@ -15,6 +15,12 @@ public class QuestionController {
     @Autowired
     private QuestionFetcherService service;
 
+    @GetMapping("/send-message")
+    public void sendMessage() {
+        System.out.println("Send message request received!");
+        service.sendMessage("Hello from Kafka!!");
+    }
+
     @GetMapping("/my-question")
     public ResponseEntity<List<QuizQuestionWrapper>> getQuestions() {
         List<QuizQuestionWrapper> questions = service.getQuestions();
