@@ -1,6 +1,7 @@
 package com.kafka.demo.controller;
 
 import com.kafka.demo.model.QuizQuestionWrapper;
+import com.kafka.demo.service.KafkaProducerService;
 import com.kafka.demo.service.QuestionFetcherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,10 +16,13 @@ public class QuestionController {
     @Autowired
     private QuestionFetcherService service;
 
+    @Autowired
+    private KafkaProducerService publisherService;
+
     @GetMapping("/send-message")
     public void sendMessage() {
         System.out.println("Send message request received!");
-        service.sendMessage("Hello from Kafka!!");
+        publisherService.sendMessage("Hello from Kafka!!");
     }
 
     @GetMapping("/my-question")

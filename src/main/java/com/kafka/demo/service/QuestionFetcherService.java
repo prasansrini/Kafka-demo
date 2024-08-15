@@ -18,9 +18,6 @@ public class QuestionFetcherService {
     @Autowired
     private ApiClient apiClient;
 
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
-
     public List<QuizQuestionWrapper> getQuestions() {
         ResponseEntity<QuizQuestionWrapper[]> responseEntity = apiClient.getQuestions();
 
@@ -34,16 +31,4 @@ public class QuestionFetcherService {
         return null;
     }
 
-    public void sendMessage(String message) {
-        String topicName = "my-first-topic";
-        CompletableFuture<SendResult<String, String>> future = kafkaTemplate.send(topicName, message);
-
-        future.whenComplete((result, exception) -> {
-            if (exception == null) {
-                System.out.println("Sent message=[" + message + "] " + "with offset=[" + result.getRecordMetadata().offset() + "]");
-            } else {
-                System.out.println("Unable to send the message=[" + message + "] due to: " + exception.getMessage());
-            }
-        });
-    }
 }
