@@ -13,7 +13,7 @@ public class KafkaProducerService {
     private KafkaTemplate<String, String> kafkaTemplate;
 
     public void sendMessage(String message) {
-        String topicName = "quiz-app";
+        String topicName = "my-first-topic";
         CompletableFuture<SendResult<String, String>> future = kafkaTemplate.send(topicName, message);
 
         future.whenComplete((result, exception) -> {
